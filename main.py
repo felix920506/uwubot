@@ -4,7 +4,7 @@ import random
 with open('token.txt','r',encoding='utf8') as tokenfile:
     token = tokenfile.read().strip()
 
-bot = discord.Bot(prefix='',intents=discord.Intents.all())
+bot = discord.Bot(prefix='')
 
 class view1(discord.ui.View):
 
@@ -23,16 +23,9 @@ class view1(discord.ui.View):
     async def buttonclicked(self,button,interaction):
         await interaction.response.send_message(view=view1(random.randint(1,4)))
 
-
-
 @bot.event
-async def on_message(message):
-    if message.content == '/uwu':
-        
-        breakdown = message.content.split(' ')
-        breakdown.pop(0)
-
-        await message.reply(view=view1(random.randint(1,4)))
+async def on_ready():
+    print('ready')
 
 @bot.command(description='uwu')
 async def uwu(ctx):
