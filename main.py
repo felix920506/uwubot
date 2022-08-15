@@ -27,11 +27,15 @@ class view1(discord.ui.View):
 
 @bot.event
 async def on_message(message):
-    if message.content.startswith('/button'):
+    if message.content == '/uwu':
         
         breakdown = message.content.split(' ')
         breakdown.pop(0)
 
         await message.reply(view=view1(random.randint(1,4)))
+
+@bot.command(description='uwu')
+async def uwu(ctx):
+    await ctx.respond(view=view1(random.randint(1,4)))
 
 bot.run(token)
